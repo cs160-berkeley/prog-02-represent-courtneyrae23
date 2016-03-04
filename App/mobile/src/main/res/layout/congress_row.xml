@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    android:maxHeight="60px"
+    android:background="#7179ea"
+    android:id="@+id/row_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:paddingLeft="20dp"
+        android:scaleType="centerInside"
+        android:onClick="detailedclick"
+        android:id="@+id/picture"
+        android:background="#00ffffff" />
+    <TableLayout>
+        <TableRow>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:paddingLeft="10dp"
+                android:textColor="#ffffff"
+                android:onClick="detailedclick"
+                android:id="@+id/name"
+                android:background="#00ffffff" />
+        </TableRow>
+
+        <TableLayout>
+            <TableRow>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/web"
+                    android:text="Website"
+                    android:textColor="#ffffff"
+                    android:background="#00ffffff"
+                    android:onClick="linkClick"
+                    android:id="@+id/website" />
+
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:drawableStart="@drawable/tweet"
+                    android:textColor="#ffffff"
+                    android:background="#00ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="initiatePopUpWindow"
+                    android:text="Latest Tweet"
+                    android:id="@+id/tweet" />
+
+            </TableRow>
+            <TableRow>
+                <Button
+                    android:drawableLeft="@drawable/mail"
+                    android:textColor="#ffffff"
+                    android:background="#00ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:onClick="emailClick"
+                    android:id="@+id/email" />
+
+                <Button
+                    android:layout_marginLeft="20dp"
+                    android:drawableLeft="@drawable/plus"
+                    android:textColor="#ffffff"
+                    android:background="#00ffffff"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="More Info"
+                    android:id="@+id/moreinfo"
+                    android:onClick="detailedclick"
+                    android:layout_column="1" />
+            </TableRow>
+        </TableLayout>
+    </TableLayout>
+</TableRow>

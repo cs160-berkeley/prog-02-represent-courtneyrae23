@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:gravity="center" android:layout_gravity="center"
+    tools:context=".MainActivity" android:orientation="vertical" tools:deviceIds="wear_round"
+    android:background="#4571cf"
+    android:id="@+id/vote">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="115dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal|top"
+            android:background="@drawable/congress2"
+            android:backgroundTintMode="src_over"
+            android:backgroundTint="#baffffff" />
+        <ImageView
+            android:layout_width="108dp"
+            android:layout_height="98dp"
+            android:id="@+id/imageView2"
+            android:layout_gravity="right|bottom"
+            android:background="#ef3e3e"
+            android:backgroundTintMode="add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2012 Presidential Vote"
+            android:textColor="#000000"
+            android:textSize="17sp"
+            android:id="@+id/title"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="60dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textColor="#000000"
+            android:id="@+id/location"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Obama"
+            android:id="@+id/obama"
+            android:textSize="18sp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="left|bottom" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="50%"
+            android:id="@+id/obama_perc"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="left|bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="Romney"
+            android:id="@+id/romney"
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="right|bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="50%"
+            android:id="@+id/romney_perc"
+            android:layout_marginBottom="30dp"
+            android:layout_marginRight="50dp"
+            android:layout_gravity="right|bottom" />
+
+
+    </FrameLayout>
+
+</RelativeLayout>

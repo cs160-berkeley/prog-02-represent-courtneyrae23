@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableRow
+        android:maxHeight="60px"
+        android:background="#7179ea"
+        android:id="@+id/mainBackground"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="150dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/deanheller"
+            android:id="@+id/picture"
+            android:background="#00ffffff"  />
+
+        <TableLayout>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dean Heller (R)"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:id="@+id/name"
+                    android:background="#00ffffff" />
+            </TableRow>
+            <TableLayout>
+                <TableRow>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/web"
+                        android:text="Website"
+                        android:textColor="#ffffff"
+                        android:background="#00ffffff"
+                        android:id="@+id/website" />
+
+                    <Button
+                        android:drawableStart="@drawable/tweet"
+                        android:textColor="#ffffff"
+                        android:background="#00ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Twitter"
+                        android:id="@+id/tweet" />
+
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:drawableLeft="@drawable/mail"
+                        android:textColor="#ffffff"
+                        android:background="#00ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:id="@+id/email" />
+
+                    <Button
+                        android:drawableLeft="@drawable/fb"
+                        android:textColor="#ffffff"
+                        android:background="#00ffffff"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook"
+                        android:id="@+id/facebook"
+                        android:layout_column="1" />
+                </TableRow>
+            </TableLayout>
+        </TableLayout>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/committees"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="Current Committees"/>
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1"
+            android:id="@+id/committee_list">
+
+        </TableLayout>
+
+    </ScrollView>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/bills"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:text="Recently Sponsored Bills"/>
+    </TableRow>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1"
+            android:id="@+id/bills_list">
+
+        </TableLayout>
+
+    </ScrollView>
+
+
+
+</TableLayout>
