@@ -1,6 +1,6 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+ A groundbreaking mobile and smartwatch application to deliver Representative/Senator facts to voters on the go.  
 
 ## Authors
 
