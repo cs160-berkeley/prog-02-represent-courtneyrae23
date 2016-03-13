@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableRow
-    android:maxHeight="60px"
+    android:layout_width="match_parent"
     android:background="#ffffff"
     android:id="@+id/row_background"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollHorizontally="true"
+    android:ellipsize="end"
+    android:maxLines="1">
 
     <TextView
         android:id="@+id/bill_or_committee"
-        android:textColor="#000000"
+        android:textColor="#ffffff"
         android:textSize="16sp"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
+        android:paddingLeft="3dp"
         android:text=""
         android:scrollHorizontally="true"
         android:ellipsize="end"
         android:maxLines="1"/>
-
-    <ImageButton
-        android:id="@+id/infoButton"
-        android:src="@drawable/info"
-        android:background="#00ffffff"
-        />
 
 </TableRow>

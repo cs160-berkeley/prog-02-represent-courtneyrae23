@@ -26,12 +26,21 @@ import java.util.ArrayList;
 public class VoterActivity extends Activity implements SensorEventListener{
     private float finalY;
     private float initialY;
+    private float initialX;
+    private float finalX;
     private int MIN_DISTANCE = 150;
     int totalReps;
     int currentRep;
+    ArrayList<String> repNums;
+    ArrayList<String> repOrSen;
     ArrayList<String> repNames;
     ArrayList<String> parties;
     String location;
+    String obama;
+    String romney;
+    String state;
+    String obama_state;
+    String romney_state;
     final int THRESHOLD = 80;
     private SensorManager mSensorManager;
     private Sensor mSensor;
@@ -49,15 +58,39 @@ public class VoterActivity extends Activity implements SensorEventListener{
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
+        repNums = extras.getStringArrayList("repNums");
+        repOrSen = extras.getStringArrayList("repOrSen");
         repNames = extras.getStringArrayList("repNames");
         parties = extras.getStringArrayList("parties");
         totalReps = repNames.size();
         currentRep = extras.getInt("currentRep");
         location = extras.getString("location");
+        obama = extras.getString("obama");
+        romney = extras.getString("romney");
+        obama_state = extras.getString("obama_state");
+        romney_state = extras.getString("romney_state");
+        state = extras.getString("state");
 
         View view = findViewById(R.id.vote);
-        TextView loc = (TextView) findViewById(R.id.location);
-        loc.setText(location);
+
+        if (repOrSen.get(currentRep).equals("senate")) {
+            TextView loc = (TextView) findViewById(R.id.location);
+            loc.setText(state);
+
+            TextView obama_val = (TextView) findViewById(R.id.obama_perc);
+            obama_val.setText(obama_state + "%");
+
+            TextView romney_val = (TextView) findViewById(R.id.romney_perc);
+            romney_val.setText(romney_state + "%");
+        } else {
+            TextView loc = (TextView) findViewById(R.id.location);
+            loc.setText(location);
+            TextView obama_val = (TextView) findViewById(R.id.obama_perc);
+            obama_val.setText(obama + "%");
+
+            TextView romney_val = (TextView) findViewById(R.id.romney_perc);
+            romney_val.setText(romney + "%");
+        }
 
         view.setOnTouchListener(new View.OnTouchListener() {
 
@@ -68,23 +101,46 @@ public class VoterActivity extends Activity implements SensorEventListener{
 
                     case MotionEvent.ACTION_DOWN:
                         initialY = event.getY();
+                        initialX = event.getX();
                         break;
 
                     case MotionEvent.ACTION_UP:
                         finalY = event.getY();
-
-                        if (initialY < finalY && finalY - initialY > MIN_DISTANCE) {
+                        finalX = event.getX();
+                        if (initialX < finalX && finalX - initialX > MIN_DISTANCE) {
+                            //left to right
+                        } else if (initialX > finalX && initialX - finalX > MIN_DISTANCE) {
+                            //right to left
+                        } else if (initialY > finalY && initialY - finalY > MIN_DISTANCE) {
+                            //down to up
+                        } else if (initialY < finalY && finalY - initialY > MIN_DISTANCE) {
                             //up to down
                             //go up to main view
                             Bundle b = new Bundle();
                             b.putStringArrayList("repNames", repNames);
+                            b.putStringArrayList("repNums", repNums);
+                            b.putStringArrayList("repOrSen", repOrSen);
                             b.putStringArrayList("parties", parties);
                             b.putString("location", location);
+                            b.putString("obama", obama);
+                            b.putString("romney", romney);
+                            b.putString("state", state);
+                            b.putString("obama_state", obama_state);
+                            b.putString("romney_state", romney_state);
                             b.putInt("currentRep", currentRep);
                             Intent screenSwitch = new Intent(VoterActivity.this, MainScreenActivity.class);
                             screenSwitch.putExtras(b);
                             startActivity(screenSwitch);
+                        } else {
+                            Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                            Bundle b2 = new Bundle();
+                            b2.putString("state", state);
+                            b2.putString("MessageType", "currentVote");
+                            sendIntent.putExtras(b2);
+                            startService(sendIntent);
+                            //it's a tap
                         }
+
                         break;
                 }
                 return true;
@@ -105,6 +161,8 @@ public class VoterActivity extends Activity implements SensorEventListener{
         mSensorManager.registerListener(this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
     }
 
+    boolean currently_shaking = false;
+
     @Override
     public final void onSensorChanged(SensorEvent event) {
 
@@ -113,11 +171,18 @@ public class VoterActivity extends Activity implements SensorEventListener{
         float z = event.values[2];
 
         if (x > THRESHOLD || y > THRESHOLD || z > THRESHOLD) {
-            Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-            Bundle b = new Bundle();
-            b.putString("MessageType", "shake");
-            sendIntent.putExtras(b);
-            startService(sendIntent);
+            currently_shaking = true;
+            return;
+        } else {
+            if (currently_shaking) {
+                currently_shaking = false;
+                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+                Bundle b = new Bundle();
+                b.putString("MessageType", "shake");
+                sendIntent.putExtras(b);
+                startService(sendIntent);
+            }
+            currently_shaking = false;
         }
     }
 

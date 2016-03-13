@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    android:layout_width="match_parent"
+    android:background="#ffffff"
+    android:id="@+id/row_background"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:scrollHorizontally="true"
+    android:ellipsize="end"
+    android:maxLines="1">
+
+    <TextView
+        android:id="@+id/bill_date"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="3dp"
+        android:paddingRight="7dp"
+        android:text=""
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/bill"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="3dp"
+        android:text=""
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+</TableRow>

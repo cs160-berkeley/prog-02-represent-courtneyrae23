@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:gravity="center" android:layout_gravity="center"
     tools:context=".MainActivity" android:orientation="vertical" tools:deviceIds="wear_round"
-    android:background="@drawable/deanheller"
-    android:backgroundTint="#72ffffff"
-    android:backgroundTintMode="src_atop"
     android:id="@+id/main"
     android:weightSum="1">
 
@@ -27,24 +24,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = "Republican"
-            android:id="@+id/party"
-            android:paddingTop="50dp"
-            android:paddingRight="20dp"
-            android:textSize="18sp"
-            android:textColor="#ffffff"
-            android:layout_gravity="right|center_vertical" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Senator"
             android:paddingTop="50dp"
-            android:paddingLeft="20dp"
             android:textSize="18sp"
             android:textColor="#ffffff"
-            android:id="@+id/repOrSen"
-            android:layout_gravity="left|center_vertical" />
+            android:id="@+id/RepSenParty"
+            android:layout_gravity="center" />
     </FrameLayout>
 
     <TextView

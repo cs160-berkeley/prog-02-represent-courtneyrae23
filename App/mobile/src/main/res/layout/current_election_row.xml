@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    android:maxHeight="60px"
+    android:background="#7179ea"
+    android:id="@+id/row_background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TableLayout
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="10dp"
+                android:textColor="#ffffff"
+                android:layout_gravity="left"
+                android:id="@+id/name"
+                android:background="#00ffffff" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingRight="10dp"
+                android:layout_gravity="right"
+                android:textColor="#ffffff"
+                android:background="#00ffffff"
+                android:id="@+id/value" />
+        </TableRow>
+    </TableLayout>
+</TableRow>

@@ -133,49 +133,54 @@ public class WatchToPhoneService extends Service {
         final String type = extras.getString("MessageType");
 
         if (type.equals("detailed")) {
-            final String repName = extras.getString("repName");
-            final String party = extras.getString("party");
+            final String id = extras.getString("id");
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     mApiClient.connect();
-                    sendMessage("/repName", repName);
-                    sendMessage("/party", party);
+                    sendMessage("/detailed", id);
+                }
+            }).start();
+        } else if (type.equals("currentVote")) {
+            final String state = extras.getString("state");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    mApiClient.connect();
+                    sendMessage("/currentVote", state);
+                }
+            }).start();
+        } else {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //first, connect to the apiclient
+                    mApiClient.connect();
+                    sendMessage("/shake", "");
                 }
             }).start();
         }
-
-        // Send the message with the cat name
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //first, connect to the apiclient
-                mApiClient.connect();
-                //now that you're connected, send a message
-                sendMessage("/" + type, "");
-            }
-        }).start();
 
         return START_STICKY;
     }
 
     @Override //remember, all services need to implement an IBinder
-    public IBinder onBind(Intent intent) {
+    public IBinder onBind (Intent intent){
         return null;
     }
 
-    private void sendMessage( final String path, final String text ) {
+    private void sendMessage(final String path, final String text) {
         //one way to send message: start a new thread and call .await()
         //see watchtophoneservice for another way to send a message
-        new Thread( new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes( mApiClient ).await();
-                for(Node node : nodes.getNodes()) {
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mApiClient).await();
+                for (Node node : nodes.getNodes()) {
                     //we find 'nodes', which are nearby bluetooth devices (aka emulators)
                     //send a message for each of these nodes (just one, for an emulator)
                     MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                            mApiClient, node.getId(), path, text.getBytes() ).await();
+                            mApiClient, node.getId(), path, text.getBytes()).await();
                     //4 arguments: api client, the node ID, the path (for the listener to parse),
                     //and the message itself (you need to convert it to bytes.)
                 }

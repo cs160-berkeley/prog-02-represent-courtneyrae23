@@ -23,7 +23,11 @@ public class PhoneToWatchService extends Service {
     private GoogleApiClient mApiClient;
     ArrayList<String> repNames;
     ArrayList<String> parties;
+    ArrayList<String> repNums;
+    ArrayList<String> rep_sen;
+    String votes;
     String location;
+    String stateVotes;
 
     @Override
     public void onCreate() {
@@ -58,8 +62,12 @@ public class PhoneToWatchService extends Service {
 
         Bundle b = intent.getExtras();
         repNames = b.getStringArrayList("repNames");
+        repNums = b.getStringArrayList("repNums");
+        rep_sen = b.getStringArrayList("Rep_Sen");
         parties = b.getStringArrayList("parties");
-        location = b.getString("Location");
+        location = b.getString("location");
+        votes = b.getString("votes");
+        stateVotes = b.getString("stateVotes");
         Log.d("T", "in PhoneToWatch!!");
 
         // Send the message with the cat name
@@ -70,19 +78,39 @@ public class PhoneToWatchService extends Service {
                 mApiClient.connect();
                 String repDel = "";
                 String partyDel = "";
+                String repNumDel = "";
+                String repOrSen = "";
                 for (int i = 0; i < repNames.size(); i++) {
                     repDel = repDel + repNames.get(i) + ",";
                 }
                 sendMessage("/sendName", repDel);
+
+                for (int i = 0; i < rep_sen.size(); i++) {
+                    repOrSen = repOrSen + rep_sen.get(i) + ",";
+                }
+                sendMessage("/sendRepSen", repOrSen);
 
                 for (int i = 0; i < parties.size(); i++) {
                     partyDel = partyDel + parties.get(i) + ",";
                 }
                 sendMessage("/sendParty", partyDel);
 
+                for (int i = 0; i < repNums.size(); i++) {
+                    repNumDel = repNumDel + repNums.get(i) + ",";
+                }
+                sendMessage("/sendNums", repNumDel);
+
+                sendMessage("/sendVotes", votes);
+
+                sendMessage("/sendStateVotes", stateVotes);
+
                 sendMessage("/location", location);
 
-                SystemClock.sleep(5000);
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 sendMessage("/startMain", "");
             }
         }).start();

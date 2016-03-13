@@ -15,8 +15,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class PhoneListenerService extends WearableListenerService {
 
-    String repName;
-    String party;
+    String id;
 
     //   WearableListenerServices don't need an iBinder or an onStartCommand: they just need an onMessageReceieved.
     private static final String DETAILS = "/detailed";
@@ -25,33 +24,31 @@ public class PhoneListenerService extends WearableListenerService {
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         Log.d("T", "in PhoneListenerService, got: " + messageEvent.getPath());
-        if( messageEvent.getPath().equalsIgnoreCase("/repName") ) {
-            repName = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-        } else if( messageEvent.getPath().equalsIgnoreCase("/party") ) {
-            party = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-        } else if( messageEvent.getPath().equalsIgnoreCase(DETAILS) ) {
-
-            // Value contains the String we sent over in WatchToPhoneService, "good job"
-            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-
+        if( messageEvent.getPath().equalsIgnoreCase(DETAILS) ) {
+            String id = new String(messageEvent.getData(), StandardCharsets.UTF_8);
             Intent intent = new Intent(this, Detailed_Activity.class );
-            intent.putExtra("repName", repName);
-            intent.putExtra("party", party);
+            Log.d("T", "Got: " + id);
+            intent.putExtra("id", id);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
             Log.d("T", "about to start detailed activity");
             startActivity(intent);
 
         } else if( messageEvent.getPath().equalsIgnoreCase(SHAKE) ) {
-
-            // Value contains the String we sent over in WatchToPhoneService, "good job"
-            String value = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-
-            Intent intent = new Intent(this, Congressional_Activity.class );
+            Intent intent = new Intent(this, Congressional_Activity.class);
             intent.putExtra("MessageType", "shake");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //you need to add this flag since you're starting a new activity from a service
             Log.d("T", "about to restart with new shake locations");
+            startActivity(intent);
+
+        } else if (messageEvent.getPath().equalsIgnoreCase("/currentVote")) {
+            String state = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Intent intent = new Intent(this, Current_Election_Activity.class);
+            intent.putExtra("state", state);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //you need to add this flag since you're starting a new activity from a service
+            Log.d("T", "about to get current votes");
             startActivity(intent);
 
         } else {
