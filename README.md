@@ -12,7 +12,7 @@ See Prog02-C Walkthrough (https://www.youtube.com/watch?v=P1rsqGKgSIs&feature=yo
 
 ## Screenshots
 
-<img src="screenshots/screenshot.png" height="400" alt="Screenshot"/>
+<img src="screenshots/screenshot-rep.png" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
