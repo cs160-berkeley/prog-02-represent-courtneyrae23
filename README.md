@@ -1,20 +1,20 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+An API-filled way to get legislator data and voting records for any location!
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Courtney Pasco ([courtneyrae23@berkeley.edu](mailto:courtneyrae23@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See Prog02-C Walkthrough (https://www.youtube.com/watch?v=P1rsqGKgSIs&feature=youtu.be)
 
 ## Screenshots
 
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
+<img src="screenshots/screenshot.png" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Any other support
+* API Reference
+* my CS160 group for sharing tips
